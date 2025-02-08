@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%8C%90%3C/text%3E%3C/svg%3E"
+    />
+    <!--<link rel="stylesheet" href="styles/main.scss" />-->
+    <title>Svensk boilerplate med Parcel och Npm</title>
+    <script src="scripts/index.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="menu">
+        <div class="logo-container">
+          <img src="images/logo-01.svg" alt="Company Logo" class="logo" />
+          <span class="company-name">CompanyName</span>
+        </div>
+        <button class="hamburger-menu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav">
+          <ul class="menu-items">
+            <li><a href="#">Hem</a></li>
+            <li><a href="images.html">Bilder</a></li>
+            <li><a href="gallery.html">Galleri</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li class="dropdown">
+              <a href="#products"> <span class="arrow"></span> Produkter </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Produkt 1</a></li>
+                <li><a href="#">Produkt 2</a></li>
+                <li><a href="#">Produkt 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <section class="text-container">
+          <h1>Frontend-baserad webbutveckling</h1>
+          <h2>Automatisering och publicering</h2>
+          <p>
+            Denna webbplats är en del av kursen Frontend-baserad webbutveckling
+            och är skapad för att lära sig automatisering och publicering i
+            webbprojekt.
+          </p>
+          <p>
+            Målet är att förstå hur moderna verktyg som Node.js kan underlätta
+            utvecklingsprocessen och skapa en responsiv webbplats med
+            automatiserad hantering av filer.
+          </p>
+        </section>
+
+        <section class="text-container">
+          <h2>Webbplatsens innehåll</h2>
+          <ul>
+            <li>
+              <strong>Startsida:</strong> En beskrivning av projektet och
+              uppgiften
+            </li>
+            <li>
+              <strong>Bilder</strong> En sida som visar optimerade fotografier
+            </li>
+            <li>
+              <strong>Galleri</strong> En sida som visar ett dummy-galleri
+            </li>
+            <li>
+              <strong>Process</strong> Dokumentation av den skapade utvecklings-
+              och publiceringsprocessen
+            </li>
+            <li>
+              <strong>Tom undermeny för eventuella "produktsidor"</strong>
+              Förberedd för framtida navigeringslänkar
+            </li>
+            <li>
+              <strong>Logotyp och webbplatsnamn</strong> Webbplatsen använder en
+              generisk SVG-logotyp som säger <em>Add a logo</em> och ett
+              placeholder-namn <em>CompanyName</em>.
+            </li>
+            <li>
+              <strong>Footer</strong> Dummy-footer med förberedelser för
+              ytterligare innehåll, inklusive den tomma undermenyn.
+            </li>
+          </ul>
+        </section>
+
+        <section class="text-container">
+          <h2>Teknik och arbetsprocess</h2>
+          <p>Webbplatsen är skapad med HTML, CSS och JavaScript.</p>
+          <p>
+            Automatiseringsverktyg som Parcel och Node.js har använts för att
+            hantera minifiering, transpilering och bildoptimering. Git och
+            GitHub har hanterat versionskontroll och publicering.
+          </p>
+          <p>
+            Dessa tekniker och verktyg har sedan sammanställts i en
+            återanvändbar mall, även kallad en boilerplate. Medvetet har varje
+            responsiv layout på webbplatsen fått en egen bakgrundsfärg för att
+            tydligt indikera de olika brytpunkterna. Detta hjälper till att
+            visualisera och förstå de responsiva stegen under utvecklingen av en
+            webbplats. Naturligtvis är det meningen att färgerna ska anpassas
+            efter behov.
+          </p>
+          <p>
+            För en detaljerad genomgång av arbetsprocessen och de verktyg som
+            används, besök sidan
+            <a href="process.html" rel="noopener noreferrer" target="_blank">
+              Process</a
+            >.
+          </p>
+          <ul>
+            <li>Allmän information om boilerplate</li>
+            <li>Arbetsprocess</li>
+            <li>Förberedelser för att skapa en Parcel boilerplate</li>
+            <li>Automatisering</li>
+            <li>Automatisering med Parcel</li>
+            <li>Netlify-specifik aktivitet</li>
+            <li>Kommande steg</li>
+          </ul>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="footer-section">
+          <h2>Företag</h2>
+          <p>Om oss</p>
+          <p>Vår historia</p>
+          <p>Jobb</p>
+        </div>
+        <div class="footer-section">
+          <h2>Vårt kontor</h2>
+          <p>Adress: Exempelgatan 123</p>
+          <p>Telefon: 0123-456789</p>
+          <p>Email: info@example.com</p>
+        </div>
+        <div class="footer-section">
+          <h2>Våra riktlinjer</h2>
+          <p>Integritetspolicy</p>
+          <p>Cookie policy</p>
+          <p>Användarvillkor</p>
+          <p>Tillgänglighetsutlåtande</p>
+        </div>
+        <div class="footer-section">
+          <h2>Navigering</h2>
+          <p>Hem</p>
+          <p>Bilder</p>
+          <p>Galleri</p>
+          <p>Process</p>
+          <p>Produkter</p>
+        </div>
+        <div class="footer-section social-media">
+          <h2>Följ oss</h2>
+          <div class="social-icons">
+            <div class="social-icon">
+              <a
+                href="https://www.facebook.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/facebook.svg" alt="Facebook" class="normal" />
+                <img
+                  src="images/facebook_hover.svg"
+                  alt="Facebook Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon">
+              <a
+                href="https://www.instagram.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  src="images/instagram.svg"
+                  alt="Instagram"
+                  class="normal"
+                />
+                <img
+                  src="images/instagram_hover.svg"
+                  alt="Instagram Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon">
+              <a
+                href="https://x.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/x.svg" alt="X" class="normal" />
+                <img src="images/x_hover.svg" alt="X Hover" class="hover" />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.linkedin.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/linkedin.svg" alt="LinkedIn" class="normal" />
+                <img
+                  src="images/linkedin_hover.svg"
+                  alt="LinkedIn Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon largest">
+              <a
+                href="https://www.youtube.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/youtube.svg" alt="YouTube" class="normal" />
+                <img
+                  src="images/youtube_hover.svg"
+                  alt="YouTube Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.pinterest.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  src="images/pinterest.svg"
+                  alt="Pinterest"
+                  class="normal"
+                />
+                <img
+                  src="images/pinterest_hover.svg"
+                  alt="Pinterest Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.tiktok.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/tiktok.svg" alt="TikTok" class="normal" />
+                <img
+                  src="images/tiktok_hover.svg"
+                  alt="TikTok Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

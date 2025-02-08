@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photo Gallery</title>
+    <link rel="stylesheet" href="styles/gallery.css" />
+    <link rel="stylesheet" href="styles/nav.css" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="styles/footer.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Ctext%20y='.9em'%20font-size='90'%3E%F0%9F%8C%90%3C/text%3E%3C/svg%3E"
+    />
+    <!--<link rel="stylesheet" href="styles/gallery.css.scss" />-->
+    <script src="scripts/gallery.js" type="module"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="menu">
+        <div class="logo-container">
+          <img src="images/logo-01.svg" alt="Company Logo" class="logo" />
+          <span class="company-name">CompanyName</span>
+        </div>
+        <button class="hamburger-menu" aria-label="Open menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <nav class="nav">
+          <ul class="menu-items">
+            <li><a href="index.html">Hem</a></li>
+            <li><a href="images.html">Bilder</a></li>
+            <li><a href="#">Galleri</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li class="dropdown">
+              <a href="#products"> <span class="arrow"></span> Produkter </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Produkt 1</a></li>
+                <li><a href="#">Produkt 2</a></li>
+                <li><a href="#">Produkt 3</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <div class="gallery">
+          <div class="gallery-item item-1">
+            <img src="https://picsum.photos/300/200?random=1" alt="Photo 1" />
+          </div>
+          <div class="gallery-item item-2">
+            <img src="https://picsum.photos/300/200?random=2" alt="Photo 2" />
+          </div>
+          <div class="gallery-item item-3">
+            <img src="https://picsum.photos/300/200?random=3" alt="Photo 3" />
+          </div>
+          <div class="gallery-item item-4">
+            <img src="https://picsum.photos/300/200?random=4" alt="Photo 4" />
+          </div>
+          <div class="gallery-item item-5">
+            <img src="https://picsum.photos/300/200?random=5" alt="Photo 5" />
+          </div>
+          <div class="gallery-item item-6">
+            <img src="https://picsum.photos/300/200?random=6" alt="Photo 6" />
+          </div>
+          <div class="gallery-item item-7">
+            <img src="https://picsum.photos/300/200?random=7" alt="Photo 7" />
+          </div>
+          <div class="gallery-item item-8">
+            <img src="https://picsum.photos/300/200?random=8" alt="Photo 8" />
+          </div>
+          <div class="gallery-item item-9">
+            <img src="https://picsum.photos/300/200?random=9" alt="Photo 9" />
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal">
+          <div class="modal-content">
+            <img
+              src="https://picsum.photos/300/200?random=9"
+              alt="Enlarged Photo"
+              class="modal-image"
+            />
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <div class="footer-section">
+          <h2>Företag</h2>
+          <p>Om oss</p>
+          <p>Vår historia</p>
+          <p>Jobb</p>
+        </div>
+        <div class="footer-section">
+          <h2>Vårt kontor</h2>
+          <p>Adress: Exempelgatan 123</p>
+          <p>Telefon: 0123-456789</p>
+          <p>Email: info@example.com</p>
+        </div>
+        <div class="footer-section">
+          <h2>Våra riktlinjer</h2>
+          <p>Integritetspolicy</p>
+          <p>Cookie policy</p>
+          <p>Användarvillkor</p>
+          <p>Tillgänglighetsutlåtande</p>
+        </div>
+        <div class="footer-section">
+          <h2>Navigering</h2>
+          <p>Hem</p>
+          <p>Bilder</p>
+          <p>Galleri</p>
+          <p>Process</p>
+          <p>Produkter</p>
+        </div>
+        <div class="footer-section social-media">
+          <h2>Följ oss</h2>
+          <div class="social-icons">
+            <div class="social-icon">
+              <a
+                href="https://www.facebook.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/facebook.svg" alt="Facebook" class="normal" />
+                <img
+                  src="images/facebook_hover.svg"
+                  alt="Facebook Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon">
+              <a
+                href="https://www.instagram.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  src="images/instagram.svg"
+                  alt="Instagram"
+                  class="normal"
+                />
+                <img
+                  src="images/instagram_hover.svg"
+                  alt="Instagram Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon">
+              <a
+                href="https://x.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/x.svg" alt="X" class="normal" />
+                <img src="images/x_hover.svg" alt="X Hover" class="hover" />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.linkedin.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/linkedin.svg" alt="LinkedIn" class="normal" />
+                <img
+                  src="images/linkedin_hover.svg"
+                  alt="LinkedIn Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon largest">
+              <a
+                href="https://www.youtube.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/youtube.svg" alt="YouTube" class="normal" />
+                <img
+                  src="images/youtube_hover.svg"
+                  alt="YouTube Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.pinterest.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img
+                  src="images/pinterest.svg"
+                  alt="Pinterest"
+                  class="normal"
+                />
+                <img
+                  src="images/pinterest_hover.svg"
+                  alt="Pinterest Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+            <div class="social-icon larger">
+              <a
+                href="https://www.tiktok.com"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                <img src="images/tiktok.svg" alt="TikTok" class="normal" />
+                <img
+                  src="images/tiktok_hover.svg"
+                  alt="TikTok Hover"
+                  class="hover"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

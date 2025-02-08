@@ -1,0 +1,106 @@
+/* Grundläggande styling för footern */
+.footer {
+  display: grid;
+  gap: 20px;
+  background-color: #333;
+  color: white;
+  padding: 40px 0 40px 50px;
+  text-align: left;
+  width: 100%;
+  margin-top: auto; /* Trycker ner footern till botten */
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column; /* Standard vertikal layout */
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+}
+
+.footer-section p {
+  margin: 5px 0;
+}
+
+.social-icons {
+  display: flex; /* Låter ikonerna visas horisontellt */
+  gap: 10px; /* Avstånd mellan ikoner */
+}
+
+.social-icon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+.social-icon .larger {
+  position: relative;
+  width: 28px;
+  height: 28px;
+}
+.social-icon .largest {
+  position: relative;
+  width: 35px;
+  height: 35px;
+}
+
+.social-icon img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Fyller förälderns bredd */
+  height: 100%; /* Fyller förälderns höjd */
+  object-fit: contain; /* Håller proportionerna */
+  transition: opacity 0.3s ease;
+}
+
+.social-icon img.hover {
+  opacity: 0; /* Dölj hover-bilden som standard */
+}
+
+.social-icon:hover img.hover {
+  opacity: 1; /* Visa hover-bilden vid hover */
+}
+
+.social-icon:hover img.normal {
+  opacity: 0; /* Dölj normal-bilden vid hover */
+}
+
+/* Mobile-first (max-width: 480px) */
+.footer {
+  grid-template-columns: 1fr; /* 1 kolumn */
+}
+
+/* Tablets (min-width: 480px and max-width: 1025px) */
+@media (min-width: 480px) and (max-width: 700px) {
+  .footer {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolumner */
+  }
+}
+
+@media (min-width: 700px) and (max-width: 1025px) {
+  .footer {
+    grid-template-columns: repeat(3, 1fr); /* 3 kolumner */
+  }
+}
+
+/* Laptops (min-width: 1025px and max-width: 1440px) */
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .footer {
+    grid-template-columns: repeat(4, 1fr); /* 4 kolumner */
+  }
+}
+
+/* Larger screens (min-width: 1440px and max-width: 1600px) */
+@media (min-width: 1440px) and (max-width: 1600px) {
+  .footer {
+    grid-template-columns: repeat(5, 1fr); /* 5 kolumner */
+  }
+}
+
+/* Max 1600px */
+@media (min-width: 1600px) {
+  .footer {
+    grid-template-columns: repeat(5, 1fr); /* 5 kolumner */
+  }
+}

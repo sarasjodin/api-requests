@@ -1,0 +1,403 @@
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: white;
+  padding: clamp(10px, 2%, 20px); /* Dynamisk padding */
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.logo {
+  height: 50px;
+  width: 200px;
+  margin: 0 10% 0 8%;
+}
+
+.company-name {
+  display: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.nav {
+  display: none;
+  flex-direction: column;
+  background-color: #333;
+  position: absolute;
+  top: 60px; /* Positionera menyn i övre högra hörnet */
+  right: 20px; /* Litet mellanrum från högra kanten */
+  width: 100%;
+  border-radius: 5px; /* Lägg till en mjukare stil */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Förhöjd stil */
+}
+
+.nav.active {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Gör att menyn håller sig vänsterjusterad */
+  width: 30%;
+  max-width: 100%;
+  z-index: 1500;
+}
+
+.menu-items {
+  list-style: none;
+  padding: 5% 10%;
+  display: flex; /* Lägger till flex för horisontell layout */
+  flex-direction: column; /* Standard layout för mobiler */
+  align-items: flex-start; /* Högerjusterar menyalternativen */
+  justify-content: center; /* Centrera menyn vertikalt (valfritt) */
+}
+
+.menu-items li {
+  margin: 5%;
+  position: relative;
+}
+
+.menu-items a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 5% 10%;
+  display: inline-flex;
+  transition: background-color 0.3s;
+}
+
+.menu-items .dropdown {
+  position: relative; /* Gör att dropdown följer sin förälder */
+  width: 100%;
+}
+
+.menu-items > li:nth-child(1) a,
+.menu-items > li:nth-child(2) a,
+.menu-items > li:nth-child(3) a,
+.menu-items > li:nth-child(4) a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  padding: 10% 15%;
+  display: inline-flex;
+  transition: background-color 0.3s;
+  min-width: 60px;
+}
+
+.menu-items a {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.menu-items a:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Semi-transparent vit bakgrund */
+  border-radius: 5px; /* För en mjukare look */
+}
+
+/* Grundinställning för dropdown-menyn */
+ul.dropdown-menu {
+  /* width: 150%; */ /* Se till att menyn alltid har denna bredd */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, width 0.3s ease;
+  position: relative; /* Ta bort absolute för att hålla den inne i huvudmenyn */
+  width: 100%; /* Gör att dropdown får samma bredd som huvudmenyn */
+  display: none;
+}
+
+/* När dropdown-menyn är aktiv (öppen) */
+ul.dropdown-menu.active {
+  width: 150%; /* Samma bredd som standard */
+  opacity: 1;
+  visibility: visible;
+}
+
+/* När användaren hovrar över "Produkter", öka också bredden på undermenyn */
+.menu-items li.dropdown:hover > ul.dropdown-menu {
+  width: 150%;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* För att dropdownmenyn ska visas som en undermeny */
+.dropdown-menu {
+  display: none;
+  position: static;
+}
+
+.dropdown-menu.active {
+  display: block;
+}
+
+.dropdown-menu li {
+  padding: 3%;
+  list-style: none;
+}
+
+.dropdown-menu li a {
+  color: lightgray;
+}
+
+.nav .dropdown-menu {
+  z-index: 1950; /* Se till att dropdownen visas ovanför allt annat */
+}
+
+.nav .dropdown:hover .dropdown-menu {
+  display: block; /* För desktop */
+}
+
+.menu-items li.dropdown > a .arrow {
+  display: inline-block;
+  content: "";
+  margin-right: 8px; /* Avstånd mellan pil och text */
+  border-style: solid;
+  border: 9px solid #0000;
+  border-color: transparent transparent transparent white; /* Pilar pekar åt höger */
+  transform: rotate(0deg); /* Standard, pekar åt höger */
+  transition: transform 0.3s ease; /* Mjuk övergång vid öppning/stängning */
+}
+
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  border: none;
+  background: transparent; /* Se till att det inte finns någon bakgrund */
+  cursor: pointer;
+  margin-right: 5%;
+  position: relative;
+  z-index: 9999;
+}
+
+/* De tre strecken */
+.hamburger-menu span,
+.hamburger-menu::before,
+.hamburger-menu::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  transition: transform 0.3s ease-in-out;
+  position: absolute;
+}
+
+/* Översta linjen */
+.hamburger-menu::before {
+  top: 0;
+}
+
+/* Mittenlinjen */
+.hamburger-menu span {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Nedersta linjen */
+.hamburger-menu::after {
+  bottom: 0;
+}
+
+/* När menyn är öppen – Skapa "X"-effekt */
+.hamburger-menu.active::before {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger-menu.active span {
+  opacity: 0; /* Dölj mittenstrecket */
+}
+
+.hamburger-menu.active::after {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+.dropdown > a:first-child:hover,
+.dropdown > a:first-child:active {
+  color: white;
+}
+
+@media (min-width: 480px) and (max-width: 600px) {
+  .company-name {
+    display: inline;
+  }
+  .menu-items {
+    list-style: none;
+    padding: 5% 10%;
+    display: flex; /* Lägger till flex för horisontell layout */
+    flex-direction: column; /* Standard layout för mobiler */
+    align-items: flex-end; /* Högerjusterar menyalternativen */
+    justify-content: center; /* Centrera menyn vertikalt (valfritt) */
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1025px) {
+  .company-name {
+    display: inline;
+  }
+  .menu-items {
+    list-style: none;
+    padding: 5% 10%;
+    display: flex; /* Lägger till flex för horisontell layout */
+    flex-direction: column; /* Standard layout för mobiler */
+    align-items: flex-end; /* Högerjusterar menyalternativen */
+    justify-content: center; /* Centrera menyn vertikalt (valfritt) */
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .nav {
+    display: flex;
+    flex-direction: row; /* Gör menyn horisontell */
+    box-shadow: none;
+    position: relative; /* Ändrad från static till relative */
+    width: 100%;
+    top: 0;
+    max-height: 119px;
+  }
+
+  .nav.active {
+    width: 100%;
+  }
+
+  .menu-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .menu-items .dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%; /* Flytta ner dropdownmenyn precis under huvudmenyn */
+    left: 0;
+    width: 200px; /* Fast bredd */
+    background-color: #444;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 2000; /* Se till att den ligger ovanpå andra element */
+  }
+
+  /* Visa dropdown på hover i desktop */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
+  .company-name {
+    display: inline;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+}
+
+/* Larger screens */
+@media (min-width: 1440px) and (max-width: 1600px) {
+  .nav {
+    display: flex;
+    flex-direction: row; /* Gör menyn horisontell */
+    position: static;
+    box-shadow: none;
+    max-height: 135px;
+  }
+
+  .nav.active {
+    width: 100%;
+  }
+
+  .menu-items {
+    list-style: none;
+    padding: 5% 10%;
+    display: flex; /* Lägger till flex för horisontell layout */
+    flex-direction: row; /* Gör länkar horisontella */
+    align-items: flex-start; /* Högerjusterar menyalternativen */
+    justify-content: center; /* Centrera menyn vertikalt (valfritt) */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .menu-items .dropdown-menu {
+    background-color: rgb(68, 68, 68);
+    z-index: 2010;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .company-name {
+    display: inline;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+}
+
+/* Max 1600px */
+@media (min-width: 1600px) {
+  .nav {
+    display: flex;
+    flex-direction: row; /* Gör menyn horisontell */
+    position: static;
+    box-shadow: none;
+    max-height: 135px;
+  }
+
+  .nav.active {
+    width: 100%;
+  }
+
+  .menu-items {
+    list-style: none;
+    padding: 5% 10%;
+    display: flex; /* Lägger till flex för horisontell layout */
+    flex-direction: row; /* Gör länkar horisontella */
+    align-items: flex-start; /* Högerjusterar menyalternativen */
+    justify-content: center; /* Centrera menyn vertikalt (valfritt) */
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+
+  .menu-items .dropdown-menu {
+    background-color: rgb(68, 68, 68);
+    z-index: 2050;
+    border-radius: 8px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .company-name {
+    display: inline;
+  }
+
+  .hamburger-menu {
+    display: none;
+  }
+}
