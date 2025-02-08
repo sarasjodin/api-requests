@@ -180,6 +180,31 @@ window.sortCourses = function (columnIndex) {
   displayCourses(filteredCourses);
 };
 
+document.getElementById('clear-search').addEventListener('click', function () {
+  document.getElementById('search').value = ''; // Rensa sökfältet
+  filteredCourses = [...courses]; // Återställ tabellen till alla kurser
+  displayCourses(filteredCourses); // Uppdatera tabellen
+
+  // Informera skärmläsare att sökningen har rensats
+  document.getElementById('search-status').textContent =
+    'Sökningen har rensats, alla kurser visas.';
+});
+
+document.getElementById('clear-search').addEventListener('click', function () {
+  document.getElementById('search').value = ''; // Rensa sökfältet
+  filteredCourses = [...courses]; // Återställ tabellen till alla kurser
+  displayCourses(filteredCourses); // Uppdatera tabellen
+
+  // Informera skärmläsare att sökningen har rensats
+  document.getElementById('search-status').textContent =
+    'Sökningen har rensats. Alla kurser visas.';
+});
+
+function updateStatus(count) {
+  let statusElement = document.getElementById('results-status');
+  statusElement.textContent = `${count} kurser hittades.`;
+}
+
 window.sortCourses = sortCourses;
 
 // Kör fetch-funktionen vid sidans start
