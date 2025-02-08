@@ -31,100 +31,42 @@
           <ul class="menu-items">
             <li><a href="#">Hem</a></li>
             <li><a href="process.html">Process</a></li>
-            <li class="dropdown">
-              <a href="#products"> <span class="arrow"></span> Produkter </a>
-              <ul class="dropdown-menu">
-                <li><a href="#">Produkt 1</a></li>
-                <li><a href="#">Produkt 2</a></li>
-                <li><a href="#">Produkt 3</a></li>
-              </ul>
-            </li>
           </ul>
         </nav>
       </header>
       <main>
         <section class="text-container">
-          <h1>Frontend-baserad webbutveckling</h1>
-          <h2>Automatisering och publicering</h2>
-          <p>
-            Denna webbplats är en del av kursen Frontend-baserad webbutveckling
-            och är skapad för att lära sig automatisering och publicering i
-            webbprojekt.
-          </p>
-          <p>
-            Målet är att förstå hur moderna verktyg som Node.js kan underlätta
-            utvecklingsprocessen och skapa en responsiv webbplats med
-            automatiserad hantering av filer.
-          </p>
-        </section>
+          <h1>Webbutveckling - ramschema</h1>
+          <label for="search">Sök</label>
+          <input
+            type="text"
+            id="search"
+            placeholder="Skriv sökord och tryck Enter för att söka"
+          />
+          <button
+            id="clear-search"
+            aria-label="Rensa sökfältet"
+            aria-controls="search"
+          >
+            Rensa
+          </button>
+          <p id="search-status" aria-live="polite"></p>
+          <p id="results-status" aria-live="polite"></p>
 
-        <section class="text-container">
-          <h2>Webbplatsens innehåll</h2>
-          <ul>
-            <li>
-              <strong>Startsida:</strong> En beskrivning av projektet och
-              uppgiften
-            </li>
-            <li>
-              <strong>Bilder</strong> En sida som visar optimerade fotografier
-            </li>
-            <li>
-              <strong>Galleri</strong> En sida som visar ett dummy-galleri
-            </li>
-            <li>
-              <strong>Process</strong> Dokumentation av den skapade utvecklings-
-              och publiceringsprocessen
-            </li>
-            <li>
-              <strong>Tom undermeny för eventuella "produktsidor"</strong>
-              Förberedd för framtida navigeringslänkar
-            </li>
-            <li>
-              <strong>Logotyp och webbplatsnamn</strong> Webbplatsen använder en
-              generisk SVG-logotyp som säger <em>Add a logo</em> och ett
-              placeholder-namn <em>CompanyName</em>.
-            </li>
-            <li>
-              <strong>Footer</strong> Dummy-footer med förberedelser för
-              ytterligare innehåll, inklusive den tomma undermenyn.
-            </li>
-          </ul>
+          <table id="course-table">
+            <thead>
+              <tr>
+                <th onclick="sortCourses(0)">Course&shy; Code</th>
+                <th onclick="sortCourses(1)">Course&shy; Name</th>
+                <th onclick="sortCourses(2)">Pro&shy;gres&shy;sion</th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+              <!-- Data will be inserted dynamically here -->
+            </tbody>
+          </table>
         </section>
-
-        <section class="text-container">
-          <h2>Teknik och arbetsprocess</h2>
-          <p>Webbplatsen är skapad med HTML, CSS och JavaScript.</p>
-          <p>
-            Automatiseringsverktyg som Parcel och Node.js har använts för att
-            hantera minifiering, transpilering och bildoptimering. Git och
-            GitHub har hanterat versionskontroll och publicering.
-          </p>
-          <p>
-            Dessa tekniker och verktyg har sedan sammanställts i en
-            återanvändbar mall, även kallad en boilerplate. Medvetet har varje
-            responsiv layout på webbplatsen fått en egen bakgrundsfärg för att
-            tydligt indikera de olika brytpunkterna. Detta hjälper till att
-            visualisera och förstå de responsiva stegen under utvecklingen av en
-            webbplats. Naturligtvis är det meningen att färgerna ska anpassas
-            efter behov.
-          </p>
-          <p>
-            För en detaljerad genomgång av arbetsprocessen och de verktyg som
-            används, besök sidan
-            <a href="process.html" rel="noopener noreferrer" target="_blank">
-              Process</a
-            >.
-          </p>
-          <ul>
-            <li>Allmän information om boilerplate</li>
-            <li>Arbetsprocess</li>
-            <li>Förberedelser för att skapa en Parcel boilerplate</li>
-            <li>Automatisering</li>
-            <li>Automatisering med Parcel</li>
-            <li>Netlify-specifik aktivitet</li>
-            <li>Kommande steg</li>
-          </ul>
-        </section>
+        <section class="text-container"></section>
       </main>
       <footer class="footer">
         <div class="footer-section">
@@ -167,24 +109,6 @@
                 <img
                   src="images/facebook_hover.svg"
                   alt="Facebook Hover"
-                  class="hover"
-                />
-              </a>
-            </div>
-            <div class="social-icon">
-              <a
-                href="https://www.instagram.com"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <img
-                  src="images/instagram.svg"
-                  alt="Instagram"
-                  class="normal"
-                />
-                <img
-                  src="images/instagram_hover.svg"
-                  alt="Instagram Hover"
                   class="hover"
                 />
               </a>
