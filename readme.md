@@ -1,6 +1,7 @@
 # 📌 Course Schedule Web Application
 
 ## 📖 Project Overview
+
 This project is a **web application** that fetches and displays course schedule data from a JSON file. The main objectives are:
 
 - Fetching data using the **Fetch API** with `async/await` and `try/catch`.
@@ -12,6 +13,7 @@ This project is a **web application** that fetches and displays course schedule 
 - Deploying the project using **Netlify**.
 
 ## 🚀 Features
+
 - ✅ Fetch and display course data dynamically.
 - ✅ Clickable headers to sort courses alphabetically.
 - ✅ Real-time search filtering based on user input.
@@ -19,6 +21,7 @@ This project is a **web application** that fetches and displays course schedule 
 - ✅ Hosted on **Netlify** with automatic deployment.
 
 ## 📂 Project Structure
+
 ```
 /src
 ├── index.html          # Main HTML structure
@@ -32,6 +35,7 @@ This project is a **web application** that fetches and displays course schedule 
 ```
 
 ## 🔧 Technologies Used
+
 - **JavaScript (ES6+)**
 - **Fetch API**
 - **Parcel**
@@ -39,30 +43,39 @@ This project is a **web application** that fetches and displays course schedule 
 - **Netlify** (for deployment)
 
 ## 📌 How to Run Locally
+
 1. **Clone the repository**
-   ```sh
+
+   ````sh
    git clone <repository-url>
    cd project-folder```
 
+   ````
+
 2. **Install dependencies & Start the development server**
-    ```npm install
+
+   ````npm install
    npm run dev ```
 
+   ````
+
 3. **Open in browser**
-The application runs on http://localhost:1234/ by default.
+   The application runs on http://localhost:1234/ by default.
 
 🌍 Live Demo
 
-The project is deployed on Netlify. (link to be added) Click below to view the live version:
-🔗 View Live Site
+The project is deployed on Netlify. Click below to view the live version:
+[🔗 View Live Site](https://some-api-calls.netlify.app/)
 
 ## 📌 Contribution & Version Control
 
 ### Git branching strategy:
--  **main** → Stable production branch.
--  **api-requests/feature/sorting** → Development branches for Fetch API features/sorting and filtering.
-Commits should be descriptive, e.g., Added search filtering functionality.
-Some pull Requests (PRs) will be reviewed before merging to main.
+
+- **main** → Stable production branch.
+- **api-requests/feature/sorting** → Development branches for Fetch API features/sorting and filtering.
+  Commits should be descriptive, e.g., Added search filtering functionality.
+  Some pull Requests (PRs) will be reviewed before merging to main.
 
 ## 📜 License
+
 This project is open-source and available under the MIT License.
