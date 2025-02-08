@@ -1,47 +1,58 @@
-# Boilerplate
+# 📌 Course Schedule Web Application
 
-En enkel projektstruktur för frontendutveckling med stöd för Parcel.
+## 📖 Project Overview
+This project is a **web application** that fetches and displays course schedule data from a JSON file. The main objectives are:
 
-## Struktur
+- Fetching data using the **Fetch API** with `async/await` and `try/catch`.
+- Displaying the course schedule in a **dynamic table**.
+- Implementing **sorting** functionality (by course code, course name, and progression).
+- Implementing **filtering** functionality (searching by course code or course name).
+- Ensuring **real-time updates** without page reloads.
+- Using **Parcel** as a build tool and managing version control with **Git & GitHub**.
+- Deploying the project using **Netlify**.
 
-- `src/`: Alla källfiler.
-- `dist/`: Bundlade filer (skapas automatiskt av Parcel).
+## 🚀 Features
+- ✅ Fetch and display course data dynamically.
+- ✅ Clickable headers to sort courses alphabetically.
+- ✅ Real-time search filtering based on user input.
+- ✅ Fully responsive UI for desktop and mobile.
+- ✅ Hosted on **Netlify** with automatic deployment.
 
-## Kom igång
+## 📂 Project Structure
+/src ├── index.html # Main HTML structure ├── styles.css # Styling for the table and UI ├── app.js # Main JavaScript logic ├── fetchData.js # Fetch API logic ├── utils.js # Sorting and filtering functions └── assets/ # Images or other static assets
 
-1. Klona projektet.
-2. Installera beroenden: `npm install`.
-3. Starta utvecklingsservern: `npm start`.
+## 🔧 Technologies Used
+- **JavaScript (ES6+)**
+- **Fetch API**
+- **Parcel**
+- **Git & GitHub**
+- **Netlify** (for deployment)
 
-## Test & validering
+## 📌 How to Run Locally
+1. **Clone the repository**
+   ```sh
+   git clone <repository-url>
+   cd project-folder```
 
-Webbriktlinjer - https://webbriktlinjer.se/
-Automatiska verktyg - https://webbriktlinjer.se/testa-din-webbplats/automatiska-testverktyg/
-Google Developer PageSpeed - https://developers.google.com/speed/pagespeed/?csw=1
-Website Speed Test - Image analysys tool - https://webspeedtest.cloudinary.com/
-Upsite - Website Speed Test - https://www.uptrends.com/tools/website-speed-test
+2. **Install dependencies & Start the development server**
+    ```npm install
+   npm run dev ```
 
-Chrome dev tools - https://developer.chrome.com/docs/devtools/
-Mozilla Firefox - https://developer.mozilla.org/en-US/docs/Tools
-Microsoft Edge - https://docs.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium
-Apple Safari - https://developer.apple.com/safari/tools/
+3. **Open in browser**
+The application runs on http://localhost:1234/ by default.
 
-    HTML-validator: https://validator.w3.org/
-    CSS-validator: http://jigsaw.w3.org/css-validator/
+🌍 Live Demo
 
-    Chrome: Colorblindly
-    Mozilla Firefox: Let's get color blind
+The project is deployed on Netlify. (link to be added) Click below to view the live version:
+🔗 View Live Site
 
+## 📌 Contribution & Version Control
 
-    Testa i webbläsarna Chrome, Firefox, Edge
-    Kontrollera om webbplatsen fungerar på olika typer av enheter/skärmstorlekar
-    Dokumentera total filstorlek som behövs laddas ner för att visa exempelvis startsidan
-    Testa hastighet/bildmaterial med Upsite och/eller Website Speed Test och i Google Pagespeed
-    Analysera hur bilder och grafik används - filstorlekar, kompression, filformat, färgdjup etcetera
-    Kontrollera om det finns bättre och mer optimerade format att använda för att minska filstorlek och laddningstid
-    Kontrollera mot webbriktlinjer (nedsatt färgseende, navigering utan mus etcetera)
-    ... och så vidare.
+### Git branching strategy:
+-  **main** → Stable production branch.
+-  **api-requests/feature/sorting** → Development branches for Fetch API features/sorting and filtering.
+Commits should be descriptive, e.g., Added search filtering functionality.
+Some pull Requests (PRs) will be reviewed before merging to main.
 
-Dokumentera sedan resultaten för webbplatsen.
-
-Detta arbetssätt är sedan lämpligt att använda även på din projektwebbplats i kursen sista moment.
+## 📜 License
+This project is open-source and available under the MIT License.
