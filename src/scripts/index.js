@@ -200,11 +200,6 @@ document.getElementById('clear-search').addEventListener('click', function () {
     'Sökningen har rensats. Alla kurser visas.';
 });
 
-function updateStatus(count) {
-  let statusElement = document.getElementById('results-status');
-  statusElement.textContent = `${count} kurser hittades.`;
-}
-
 window.sortCourses = sortCourses;
 
 // Kör fetch-funktionen vid sidans start
