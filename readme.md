@@ -19,15 +19,17 @@ This project is a **web application** that fetches and displays course schedule 
 - ✅ Hosted on **Netlify** with automatic deployment.
 
 ## 📂 Project Structure
+```
 /src
-├── index.html # Main HTML structure
-├── 📂styles
-│    └──styles.css # Styling for the table and UI
-├── 📂scripts
-│    ├──app.js # Main JavaScript logic
-│    ├──fetchData.js # Fetch API logic
-│    └──utils.js # Sorting and filtering functions
+├── index.html          # Main HTML structure
+├── 📂styles            # Styles folder
+│    └──styles.css      # Styling for the table and UI
+├── 📂scripts           # Scripts folder
+│    ├──app.js          # Main JavaScript logic
+│    ├──fetchData.js    # Fetch API logic
+│    └──utils.js        # Sorting and filtering functions
 └── 📂images
+```
 
 ## 🔧 Technologies Used
 - **JavaScript (ES6+)**
