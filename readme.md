@@ -23,7 +23,7 @@ This project is a **web application** that fetches and displays course schedule 
 ├── index.html # Main HTML structure
 ├── 📂styles
 │    └──styles.css # Styling for the table and UI
-├── 📂scritps
+├── 📂scripts
 │    ├──app.js # Main JavaScript logic
 │    ├──fetchData.js # Fetch API logic
 │    └──utils.js # Sorting and filtering functions
