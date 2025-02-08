@@ -71,6 +71,57 @@ document.getElementById('search').addEventListener('keydown', function (event) {
   }
 });
 
+function sortCourses(columnIndex) {
+  console.log('Sorting column:', columnIndex);
+
+  let headers = document.querySelectorAll('th');
+
+  // Om användaren klickar på en ny kolumn, resetta sorteringsriktningen
+  if (currentSortColumn !== columnIndex) {
+    sortDirection = 1; // Starta om från stigande sortering
+  } else {
+    sortDirection *= -1; // Växla riktning om samma kolumn klickas
+  }
+
+  // Ta bort sorteringspilar och "active"-klasser från alla kolumner
+  headers.forEach((th) => {
+    th.removeAttribute('data-sort');
+    th.classList.remove('active');
+  });
+
+  // Hämta det th-element som klickades
+  let columnHeader = headers[columnIndex];
+
+  // Sätt sorteringsriktning i attribut och lägg till aktiv klass
+  let sortOrder = sortDirection === 1 ? 'asc' : 'desc';
+  columnHeader.setAttribute('data-sort', sortOrder);
+  columnHeader.classList.add('active');
+
+  // Uppdatera currentSortColumn till den nu sorterade kolumnen
+  currentSortColumn = columnIndex;
+
+  // Sortera listan baserat på sorteringsriktning
+  filteredCourses.sort((a, b) => {
+    let textA, textB;
+
+    if (columnIndex === 0) {
+      textA = a.code.toLowerCase();
+      textB = b.code.toLowerCase();
+    } else if (columnIndex === 1) {
+      textA = a.coursename.toLowerCase();
+      textB = b.coursename.toLowerCase();
+    } else if (columnIndex === 2) {
+      textA = a.progression.toLowerCase();
+      textB = b.progression.toLowerCase();
+    }
+
+    return textA.localeCompare(textB) * sortDirection;
+  });
+
+  // Uppdatera tabellen med sorterade data
+  displayCourses(filteredCourses);
+}
+
 // Filtrera kurser baserat på sökfältet
 function filterCourses() {
   let searchQuery = document.getElementById('search').value.toLowerCase();
