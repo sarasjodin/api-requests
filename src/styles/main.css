@@ -168,7 +168,16 @@ tbody tr:hover {
 /* 🔹 Highlighta den aktiva sorteringskolumnen */
 th.active {
   background-color: #3a6089 !important;
-  text-decoration: underline;
+}
+
+th[data-sort='asc']::after {
+  content: ' ▲';
+  color: #dadadb;
+}
+
+th[data-sort='desc']::after {
+  content: ' ▼';
+  color: #dadadb;
 }
 
 input::placeholder {
