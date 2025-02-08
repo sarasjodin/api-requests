@@ -1,8 +1,8 @@
 {
-  "name": "boilerplate-sv_parcel-npm",
+  "name": "api-requests",
   "version": "1.0.0",
   "type": "module",
-  "description": "Mitt boilerplate projekt med parcel npm svenska inställningar",
+  "description": "My api request project",
   "source": "src/index.html",
   "scripts": {
     "start": "parcel",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sarasjodin/boilerplate-sv_parcel-npm.git"
+    "url": "git+https://github.com/sarasjodin/api-requests.git"
   },
   "author": "Sara Sjodin Scolari",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/sarasjodin/boilerplate-sv_parcel-npm/issues"
+    "url": "https://github.com/sarasjodin/api-requests/issues"
   },
-  "homepage": "https://github.com/sarasjodin/boilerplate-sv_parcel-npm#readme",
+  "homepage": "https://github.com/sarasjodin/api-requests#readme",
   "devDependencies": {
     "parcel": "^2.13.3",
     "prettier": "^3.4.2",
