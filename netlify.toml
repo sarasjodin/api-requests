@@ -13,7 +13,7 @@
   force = true
 
 [[headers]]
-for = "/**.js"
+for = "/*.js"
   [headers.values]
     Content-Type = "application/javascript"
 
@@ -25,17 +25,17 @@ for = "/**.js"
       Content-Type = "text/html; charset=UTF-8"
 
 [[headers]]
-  for = "/**.svg"
+  for = "/*.svg"
     [headers.values]
       Content-Type = "image/svg+xml"
 
 [[headers]]
-  for = "/**.png"
+  for = "/*.png"
     [headers.values]
       Content-Type = "image/png"
 
 [[headers]]
-  for = "/**.jpg"
+  for = "/*.jpg"
     [headers.values]
       Content-Type = "image/jpeg"
 
