@@ -37,6 +37,7 @@ let filteredCourses = [];
 let lastFilteredOrder = []; // Sparar senaste filtrerade ordningen
 let currentSortColumn = null;
 let sortStates = {};
+let debounceTimer;
 
 // Hämta JSON-data och rendera tabellen
 async function fetchCourses() {
@@ -59,10 +60,19 @@ async function fetchCourses() {
   }
 }
 
+// *Debounce-för att vänta innan sökning sker
+function debounce(func, delay) {
+  return function (...args) {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => func(...args), delay);
+  };
+}
+
 // Visar kurser i tabellen
 function displayCourses(data) {
   let tableBody = document.getElementById('table-body');
-  tableBody.innerHTML = data
+  let activeElement = document.activeElement; // Spara aktivt element
+  let rows = data
     .map(
       (course) =>
         `<tr>
@@ -73,7 +83,16 @@ function displayCourses(data) {
     )
     .join('');
 
-  updateStatus(data.length);
+  tableBody.innerHTML = ''; // Rensa innehållet innan ny inladdning
+  setTimeout(() => {
+    tableBody.innerHTML = rows;
+    updateStatus(data.length);
+
+    // Återställ fokus om det var på sökrutan
+    if (activeElement && activeElement.id === 'search') {
+      activeElement.focus();
+    }
+  }, 10);
 }
 
 // Filtrera kurser endast vid Enter-tangent
@@ -90,6 +109,16 @@ document.getElementById('search-button').addEventListener('click', function () {
   /* console.log('Sök-knappen klickad');  */ // För debugging
   filterCourses();
 });
+
+// Anropa debounce vid varje inmatning
+document.getElementById('search').addEventListener(
+  'input',
+  debounce(() => {
+    let searchField = document.getElementById('search');
+    filterCourses();
+    searchField.focus(); // Behåller fokus i sökrutan
+  }, 1000)
+);
 
 // Sorteringsfunktion (asc - desc - default)
 function sortCourses(columnIndex) {

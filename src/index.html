@@ -33,11 +33,7 @@
         <section class="text-container">
           <h1>Webbutveckling - ramschema</h1>
           <label for="search">Sök</label>
-          <input
-            type="text"
-            id="search"
-            placeholder="Skriv sökord och tryck Enter eller Sök"
-          />
+          <input type="text" id="search" placeholder="Ange sökord här" />
           <button class="btn" id="search-button" aria-label="Sök i tabellen">
             Sök
           </button>
@@ -51,7 +47,7 @@
             Rensa
           </button>
           <p id="search-status" aria-live="polite"></p>
-          <p id="results-status" aria-live="polite"></p>
+          <p id="results-status" role="status"></p>
 
           <table id="course-table">
             <thead>
@@ -61,7 +57,7 @@
                 <th onclick="sortCourses(2)">Pro&shy;gres&shy;sion</th>
               </tr>
             </thead>
-            <tbody id="table-body">
+            <tbody id="table-body" aria-live="polite">
               <!-- Data will be inserted dynamically here -->
             </tbody>
           </table>
