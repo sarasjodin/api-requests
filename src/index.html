@@ -41,12 +41,17 @@
           <input
             type="text"
             id="search"
-            placeholder="Skriv sökord och tryck Enter för att söka"
+            placeholder="Skriv sökord och tryck Enter eller Sök"
           />
+          <button class="btn" id="search-button" aria-label="Sök i tabellen">
+            Sök
+          </button>
           <button
+            class="btn"
             id="clear-search"
             aria-label="Rensa sökfältet"
             aria-controls="search"
+            aria-describedby="results-status"
           >
             Rensa
           </button>

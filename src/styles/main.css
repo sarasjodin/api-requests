@@ -149,35 +149,37 @@ th:hover {
   background-color: #28415d;
 }
 
-/* 🔹 Tabellrader */
+/* Tabellrader */
 td {
   padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 
-/* 🔹 Växla radfärger för bättre läsbarhet */
+/* Växla radfärger för bättre läsbarhet */
 tbody tr:nth-child(odd) {
   background-color: #f9f9f9;
 }
 
-/* 🔹 Hover-effekt för rader */
+/* Hover-effekt för rader */
 tbody tr:hover {
   background-color: #f1f1f1;
 }
 
-/* 🔹 Highlighta den aktiva sorteringskolumnen */
+/* Highlighta den aktiva sorteringskolumnen */
 th.active {
   background-color: #3a6089 !important;
 }
 
 th[data-sort='asc']::after {
-  content: ' ▲';
-  color: #dadadb;
+  content: ' 🔼';
 }
 
 th[data-sort='desc']::after {
-  content: ' ▼';
-  color: #dadadb;
+  content: ' 🔽';
+}
+
+th[data-sort='default']::after {
+  content: '';
 }
 
 input::placeholder {
@@ -186,29 +188,40 @@ input::placeholder {
   opacity: 1;
 }
 
+#search,
+#search-button,
 #clear-search {
-  margin: 10px 10px 10px 0;
+  display: inline-block;
+  margin-right: 8px; /* Mellanrum mellan knapparna */
   padding: 8px 12px;
   font-size: 14px;
+  border-radius: 5px;
+}
+
+.btn {
+  margin-top: 20px;
+}
+
+#search-button {
   background-color: #3a6089;
   color: white;
   border: 2px solid transparent;
-  border-radius: 5px;
   cursor: pointer;
-  transition:
-    background-color 0.3s ease,
-    border-color 0.3s ease;
+  transition: background-color 0.3s ease;
 }
 
-/* Förbättrad hover-effekt */
-#clear-search:hover {
+#search-button:hover {
   background-color: #1b2c3e;
 }
 
-/* Tillgänglighetsförbättring: Tydlig fokusram vid tabbning */
-#clear-search:focus {
-  outline: 3px solid #f0efeb;
-  border-color: #ecebe5;
+#clear-search {
+  background-color: #d9534f;
+  color: white;
+  border: 2px solid transparent;
+}
+
+#clear-search:hover {
+  background-color: #c9302c;
 }
 
 /* Tablets */

@@ -1,3 +1,8 @@
+/* console.log(
+  'Ny version av JavaScript laddad - Timestamp:',
+  new Date().toISOString()
+); */
+
 document.addEventListener('DOMContentLoaded', function () {
   const hamburgerMenu = document.querySelector('.hamburger-menu');
   const nav = document.querySelector('.nav');
@@ -26,10 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-let courses = []; // Alla kurser från JSON
-let filteredCourses = []; // För att lagra de filtrerade kurserna
-let currentSortColumn = null; // Håller koll på vilken kolumn som sorteras
-let sortDirection = 1; // 1 = stigande, -1 = fallande
+// Variabler
+let courses = [];
+let filteredCourses = [];
+let lastFilteredOrder = []; // Sparar senaste filtrerade ordningen
+let currentSortColumn = null;
+let sortStates = {};
 
 // Hämta JSON-data och rendera tabellen
 async function fetchCourses() {
@@ -37,94 +44,120 @@ async function fetchCourses() {
     const response = await fetch(
       'https://webbutveckling.miun.se/files/ramschema_ht24.json'
     );
+    if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
+
     courses = await response.json();
-    filteredCourses = [...courses]; // Börja med att visa alla kurser
+    filteredCourses = [...courses];
+    lastFilteredOrder = [...filteredCourses];
     displayCourses(filteredCourses);
   } catch (error) {
     console.error('Failed to fetch course data:', error);
+    document.getElementById('table-body').innerHTML =
+      '<tr><td colspan="3">Kunde inte ladda kurser. Försök igen senare.</td></tr>';
   }
 }
 
 // Visar kurser i tabellen
 function displayCourses(data) {
   let tableBody = document.getElementById('table-body');
-  tableBody.innerHTML = ''; // Rensa tidigare innehåll
+  tableBody.innerHTML = data
+    .map(
+      (course) =>
+        `<tr>
+      <td>${course.code}</td>
+      <td>${course.coursename}</td>
+      <td>${course.progression}</td>
+    </tr>`
+    )
+    .join('');
 
-  data.forEach((course) => {
-    let row = `<tr>
-                    <td>${course.code}</td>
-                    <td>${course.coursename}</td>
-                    <td>${course.progression}</td>
-                  </tr>`;
-    tableBody.innerHTML += row;
-  });
-
-  updateStatus(data.length); // Uppdatera aria-live
+  updateStatus(data.length);
 }
 
 // Filtrera kurser endast vid Enter-tangent
 document.getElementById('search').addEventListener('keydown', function (event) {
   if (event.key === 'Enter') {
     // Kontrollera om Enter trycks
-    event.preventDefault(); // Förhindra standardbeteende
+    event.preventDefault();
     filterCourses();
   }
 });
 
-function sortCourses(columnIndex) {
-  console.log('Sorting column:', columnIndex);
+// Gör att "Sök"-knappen kör samma funktion som Enter-knappen
+document.getElementById('search-button').addEventListener('click', function () {
+  /* console.log('Sök-knappen klickad');  */ // För debugging
+  filterCourses();
+});
 
+// Sorteringsfunktion (asc - desc - default)
+function sortCourses(columnIndex) {
   let headers = document.querySelectorAll('th');
 
-  // Om användaren klickar på en ny kolumn, resetta sorteringsriktningen
+  /* console.log(`Sortering klickad på kolumn ${columnIndex}`); */
+
+  // Återställ den gamla sorteringen när klick på ny kolumn
   if (currentSortColumn !== columnIndex) {
-    sortDirection = 1; // Starta om från stigande sortering
-  } else {
-    sortDirection *= -1; // Växla riktning om samma kolumn klickas
+    if (currentSortColumn !== null) {
+      sortStates[currentSortColumn] = 'default';
+    }
+    currentSortColumn = columnIndex;
   }
 
-  // Ta bort sorteringspilar och "active"-klasser från alla kolumner
+  // asc - desc - default
+  if (!sortStates[columnIndex] || sortStates[columnIndex] === 'default') {
+    sortStates[columnIndex] = 'asc';
+  } else if (sortStates[columnIndex] === 'asc') {
+    sortStates[columnIndex] = 'desc';
+  } else {
+    sortStates[columnIndex] = 'default';
+  }
+
+  /* console.log(
+    `Sorteringsläge för kolumn ${columnIndex}: ${sortStates[columnIndex]}`
+  ); */
+
+  // Ta bort alla sorteringspilar och "active"-klasser
   headers.forEach((th) => {
     th.removeAttribute('data-sort');
     th.classList.remove('active');
   });
 
-  // Hämta det th-element som klickades
-  let columnHeader = headers[columnIndex];
+  // Om "default" - Återställ listan till filtrerad ordning och ta bort pil
+  if (sortStates[columnIndex] === 'default') {
+    /* console.log(`Återställer till senaste filtreringsordningen`); */
+    currentSortColumn = null;
+    displayCourses(lastFilteredOrder);
+    return;
+  }
 
-  // Sätt sorteringsriktning i attribut och lägg till aktiv klass
-  let sortOrder = sortDirection === 1 ? 'asc' : 'desc';
-  columnHeader.setAttribute('data-sort', sortOrder);
-  columnHeader.classList.add('active');
+  // Bestäm sorteringsriktning o uppdatera UI
+  let sortDirection = sortStates[columnIndex] === 'asc' ? 1 : -1;
+  headers[columnIndex].setAttribute('data-sort', sortStates[columnIndex]);
+  headers[columnIndex].classList.add('active');
 
-  // Uppdatera currentSortColumn till den nu sorterade kolumnen
-  currentSortColumn = columnIndex;
+  /* console.log(`Sorterar ${sortStates[columnIndex]} ordning`); */
 
-  // Sortera listan baserat på sorteringsriktning
+  // Sortera kurserna
   filteredCourses.sort((a, b) => {
-    let textA, textB;
-
-    if (columnIndex === 0) {
-      textA = a.code.toLowerCase();
-      textB = b.code.toLowerCase();
-    } else if (columnIndex === 1) {
-      textA = a.coursename.toLowerCase();
-      textB = b.coursename.toLowerCase();
-    } else if (columnIndex === 2) {
-      textA = a.progression.toLowerCase();
-      textB = b.progression.toLowerCase();
-    }
+    let key =
+      columnIndex === 0
+        ? 'code'
+        : columnIndex === 1
+          ? 'coursename'
+          : 'progression';
+    let textA = a[key].toLowerCase();
+    let textB = b[key].toLowerCase();
 
     return textA.localeCompare(textB) * sortDirection;
   });
 
-  // Uppdatera tabellen med sorterade data
   displayCourses(filteredCourses);
 }
 
-// Filtrera kurser baserat på sökfältet
+// Filtreringsfunktion
 function filterCourses() {
   let searchQuery = document.getElementById('search').value.toLowerCase();
+  /* console.log(`Söker efter: "${searchQuery}"`); */
 
   filteredCourses = courses.filter(
     (course) =>
@@ -132,75 +165,72 @@ function filterCourses() {
       course.coursename.toLowerCase().includes(searchQuery)
   );
 
-  // Om sortering redan har använts, behåll sorteringen
+  /* console.log(
+    `Filtrering klar. Antal kurser som matchar: ${filteredCourses.length}`
+  ); */
+
+  lastFilteredOrder = [...filteredCourses]; // Spara filtreringsordning för default
+
+  document.getElementById('results-status').textContent =
+    `${filteredCourses.length} kurser hittades.`;
+
   if (currentSortColumn !== null) {
+    /* console.log(`Sortering kvarstår för kolumn ${currentSortColumn}`); */
     sortCourses(currentSortColumn);
   } else {
+    /* console.log('Inga aktiva sorteringar, visar filtrerade kurser'); */
     displayCourses(filteredCourses);
   }
 }
+
+// Uppdatera antal kurser
+function updateStatus(count) {
+  document.getElementById('results-status').textContent =
+    `${count} courses found`;
+}
+
+// Rensa sökning och sortering
+document.getElementById('clear-search').addEventListener('click', function () {
+  /* console.log('Rensning av sökning och sortering initierad...'); */
+
+  document.getElementById('search').value = ''; // Rensa sökfältet
+  filteredCourses = [...courses]; // Återställ tabellen till alla kurser
+  lastFilteredOrder = [...filteredCourses]; // Återställ defaultvärde
+
+  /* console.log('Tabell återställd till originalinläsning'); */
+
+  // Återställ sorteringsstatus
+  sortStates = {};
+  currentSortColumn = null;
+
+  /* console.log('Alla sorteringsvärden nollställda'); */
+
+  // Ta bort ALLA sorteringspilar och "active"-klasser från kolumner
+  document.querySelectorAll('th').forEach((th) => {
+    th.removeAttribute('data-sort');
+    th.classList.remove('active');
+  });
+
+  /* console.log('Alla sorteringspilar och highlights borttagna'); */
+
+  // Tvinga en omritning av tabellen
+  setTimeout(() => {
+    displayCourses(filteredCourses);
+    /* console.log('Tabell uppdaterad'); */
+  }, 10);
+
+  document.getElementById('search-status').textContent =
+    'Sökningen har rensats, alla kurser visas.';
+});
+
+// Koppla sorteringsfunktion till HTML-tabellen
+window.sortCourses = sortCourses;
+
+// Kör fetch vid sidstart
+fetchCourses();
 
 // Uppdatera aria-live för skärmläsare
 function updateStatus(count) {
   let statusElement = document.getElementById('results-status');
   statusElement.textContent = `${count} courses found`;
 }
-
-// Sortera tabellen baserat på klickad kolumn
-window.sortCourses = function (columnIndex) {
-  console.log('Sorting column:', columnIndex);
-
-  currentSortColumn = columnIndex; // Sparar vilken kolumn som sorteras
-
-  if (filteredCourses.length === 0) {
-    console.warn('No data to sort!'); // Om listan är tom
-    return;
-  }
-
-  filteredCourses.sort((a, b) => {
-    let textA, textB;
-
-    if (columnIndex === 0) {
-      textA = a.code.toLowerCase();
-      textB = b.code.toLowerCase();
-    } else if (columnIndex === 1) {
-      textA = a.coursename.toLowerCase();
-      textB = b.coursename.toLowerCase();
-    } else if (columnIndex === 2) {
-      textA = a.progression.toLowerCase();
-      textB = b.progression.toLowerCase();
-    }
-
-    return textA.localeCompare(textB) * sortDirection;
-  });
-
-  // Växla mellan stigande och fallande sortering
-  sortDirection *= -1;
-
-  displayCourses(filteredCourses);
-};
-
-document.getElementById('clear-search').addEventListener('click', function () {
-  document.getElementById('search').value = ''; // Rensa sökfältet
-  filteredCourses = [...courses]; // Återställ tabellen till alla kurser
-  displayCourses(filteredCourses); // Uppdatera tabellen
-
-  // Informera skärmläsare att sökningen har rensats
-  document.getElementById('search-status').textContent =
-    'Sökningen har rensats, alla kurser visas.';
-});
-
-document.getElementById('clear-search').addEventListener('click', function () {
-  document.getElementById('search').value = ''; // Rensa sökfältet
-  filteredCourses = [...courses]; // Återställ tabellen till alla kurser
-  displayCourses(filteredCourses); // Uppdatera tabellen
-
-  // Informera skärmläsare att sökningen har rensats
-  document.getElementById('search-status').textContent =
-    'Sökningen har rensats. Alla kurser visas.';
-});
-
-window.sortCourses = sortCourses;
-
-// Kör fetch-funktionen vid sidans start
-fetchCourses();
