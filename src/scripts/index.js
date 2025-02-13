@@ -40,9 +40,10 @@ let sortStates = {};
 
 // Hämta JSON-data och rendera tabellen
 async function fetchCourses() {
-    console.log('fetchCourses() körs...');
   try {
-    const response = await fetch('/api/courses'); // Via Netlify-proxy
+    const response = await fetch(
+      'https://webbutveckling.miun.se/files/ramschema_ht24.json'
+    );
     console.log('Response från fetch:', response);
     if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
 
@@ -52,7 +53,7 @@ async function fetchCourses() {
     lastFilteredOrder = [...filteredCourses];
     displayCourses(filteredCourses);
   } catch (error) {
-    console.error('Fetch-fel på Netlify:', error);
+    console.error('Failed to fetch course data:', error);
     document.getElementById('table-body').innerHTML =
       '<tr><td colspan="3">Kunde inte ladda kurser. Försök igen senare.</td></tr>';
   }

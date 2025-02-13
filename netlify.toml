@@ -7,8 +7,7 @@ NODE_ENV = "production"
 NETLIFY_USE_CACHE = "false"
 
 [[redirects]]
-from = "/api/courses"
-to = "https://webbutveckling.miun.se/files/ramschema_ht24.json"
+from = "/*"
+to = "/index.html"
 status = 200
 force = true
-headers = { Access-Control-Allow-Origin = "*" }
