@@ -173,8 +173,7 @@ function filterCourses() {
 
   lastFilteredOrder = [...filteredCourses]; // Spara filtreringsordning för default
 
-  document.getElementById('results-status').textContent =
-    `${filteredCourses.length} kurser hittades.`;
+  updateStatus(filteredCourses.length);
 
   if (currentSortColumn !== null) {
     /* console.log(`Sortering kvarstår för kolumn ${currentSortColumn}`); */
@@ -186,10 +185,7 @@ function filterCourses() {
 }
 
 // Uppdatera antal kurser
-function updateStatus(count) {
-  document.getElementById('results-status').textContent =
-    `${count} courses found`;
-}
+updateStatus(filteredCourses.length);
 
 // Rensa sökning och sortering
 document.getElementById('clear-search').addEventListener('click', function () {
@@ -231,7 +227,6 @@ window.sortCourses = sortCourses;
 // Kör fetch vid sidstart
 fetchCourses();
 
-// Uppdatera aria-live för skärmläsare
 function updateStatus(count) {
   let statusElement = document.getElementById('results-status');
   statusElement.textContent = `${count} courses found`;
