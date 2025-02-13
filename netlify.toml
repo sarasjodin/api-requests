@@ -3,7 +3,7 @@
   publish = "dist"
 
 [build.environment]
-NODE_ENV = "production"
+NODE_ENV = "development"
 NETLIFY_USE_CACHE = "false"
 
 [[redirects]]
