@@ -1,6 +1,10 @@
 [build]
-  command = "npm run build"
+  command = "rm -rf .parcel-cache dist && npm run build"
   publish = "dist"
+
+[build.environment]
+NODE_ENV = "production"
+NETLIFY_USE_CACHE = "false"
 
 [[redirects]]
   from = "/*"
