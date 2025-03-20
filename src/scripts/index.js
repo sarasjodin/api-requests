@@ -39,26 +39,26 @@ let currentSortColumn = null;
 let sortStates = {};
 let debounceTimer;
 
-// Hämta JSON-data och rendera tabellen
+import localCourses from './ramschema_ht24.json';
+
 async function fetchCourses() {
+  const apiUrl = 'https://webbutveckling.miun.se/files/ramschema_ht24.json';
+
   try {
-    const response = await fetch(
-      'https://webbutveckling.miun.se/files/ramschema_ht24.json'
-    );
-    console.log('Response från fetch:', response);
+    const response = await fetch(apiUrl);
     if (!response.ok) throw new Error(`HTTP-fel! Status: ${response.status}`);
 
     courses = await response.json();
-    filteredCourses = [...courses];
-    console.log('Kurser hämtade:', courses);
-    lastFilteredOrder = [...filteredCourses];
-    displayCourses(filteredCourses);
+    console.log('Kurser hämtade från API:', courses);
   } catch (error) {
-    console.error('Failed to fetch course data:', error);
-    document.getElementById('table-body').innerHTML =
-      '<tr><td colspan="3">Kunde inte ladda kurser. Försök igen senare.</td></tr>';
+    console.warn('API misslyckades, laddar lokal JSON:', error);
+    courses = localCourses; // Använd lokala JSON-data
   }
+
+  displayCourses(courses);
 }
+
+fetchCourses();
 
 // *Debounce-för att vänta innan sökning sker
 function debounce(func, delay) {
